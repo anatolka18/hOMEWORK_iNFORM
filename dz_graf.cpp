@@ -1,4 +1,4 @@
-////Граф представлен в виде списка смежности.Реализовать обход в ширину, используя очередь, и нерекурсивный обход в глубину.
+////ГѓГ°Г Гґ ГЇГ°ГҐГ¤Г±ГІГ ГўГ«ГҐГ­ Гў ГўГЁГ¤ГҐ Г±ГЇГЁГ±ГЄГ  Г±Г¬ГҐГ¦Г­Г®Г±ГІГЁ.ГђГҐГ Г«ГЁГ§Г®ГўГ ГІГј Г®ГЎГµГ®Г¤ Гў ГёГЁГ°ГЁГ­Гі, ГЁГ±ГЇГ®Г«ГјГ§ГіГї Г®Г·ГҐГ°ГҐГ¤Гј, ГЁ Г­ГҐГ°ГҐГЄГіГ°Г±ГЁГўГ­Г»Г© Г®ГЎГµГ®Г¤ Гў ГЈГ«ГіГЎГЁГ­Гі.
 //#include <iostream>
 //#include <fstream>
 //#include <vector>
@@ -61,7 +61,53 @@
 //}
 //
 //
-
+//void Shir6(int N, vector<vector<int>> Gr) {
+//	queue* h = NULL;
+//	queue* t = NULL;
+//	int k;
+//	cout << "РќР°С‡Р°С‚СЊ РѕР±С…РѕРґ СЃ : " << endl;
+//	cin >> k;
+//	vector<int> visit;
+//	visit.resize(N);
+//	for (int i = 0; i < N; i++) {
+//			visit.push_back(0);
+//	}
+//	helperS(h, t, k, Gr, visit);
+//	cout << endl;
+//}
+//void helperG(int k, vector<vector<int>> Gr, vector<int> visit, vector<int> conect) {
+//	stack* Predok = NULL;
+//	pushS(Predok, -1);
+//	vector<int> out;
+//	out.push_back(k);
+//	int p = k;
+//	while (conect[k] > 0) {
+////		for (int i = 0; i < Gr[p].size(); i++) {
+////			int j = Gr[p][i];
+////			if ((j!= Predok->inf) || (j!= k)) {
+////				if (visit[j] == 0) {
+////					out.push_back(j);
+////					if (conect[j] > 0) {
+////						pushS(Predok, p);
+////						conect[j] --;
+////						conect[p] --;
+////						p = j;
+////					}
+////				}
+////			}
+////		}
+////		visit[p] = 1;
+////		p = popS(Predok);
+////		if (out.size() == Gr.size()) {
+////			break;
+////		}
+////	}
+////	for (auto i = out.begin(); i != out.end(); i++) {
+////		cout << *i << " ";
+////	}
+////	cout << endl;
+////
+////}
 //int main() {
 //	setlocale(LC_ALL, "Russian");
 //	int E, N;
