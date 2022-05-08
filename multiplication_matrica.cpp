@@ -6,10 +6,10 @@ using namespace std;
 int n;
 
 vector<vector<int>> Cin(vector<vector<int>> a) {
-	cout << "Ââåäèòå ìàòðèöó : " << endl;
+	cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð¼Ð°Ñ‚Ñ€Ð¸Ñ†Ñƒ : " << endl;
 	int x;
-	for (int i = 0; i < n; ++i) {
-		for (int j = 0; j < n; ++j) {
+	for (int i = 1; i <= n; ++i) {
+		for (int j = 1; j <= n; ++j) {
 			cin >> x;
 			a[i][j] = x;
 		}
@@ -19,9 +19,9 @@ vector<vector<int>> Cin(vector<vector<int>> a) {
 }
 
 void Cout(vector<vector<int>> a) {
-	cout << "Èòîã : " << endl;
-	for (int i = 0; i < n; ++i) {
-		for (int j = 0; j < n; ++j) {
+	cout << "Ð˜Ñ‚Ð¾Ð³ : " << endl;
+	for (int i = 1; i <= n; ++i) {
+		for (int j = 1; j <= n; ++j) {
 			cout << a[i][j] << " ";
 		}
 		cout << endl;
@@ -31,14 +31,46 @@ void Cout(vector<vector<int>> a) {
 
 void mult(vector<vector<int>> a, vector<vector<int>> b) {
 	vector<vector<int>> c;
-	c.resize(n);
-	for (int i = 0; i < n; i++) {
-		c[i].resize(n);
+	c.resize(n+1);
+	for (int i = 1; i <= n; i++) {
+		c[i].resize(n+1);
 	}
-	for (int i = 0; i < n; ++i) {
-		for (int j = 0; j < n; ++j) {
-			for (int z = 0; z < n; z++) {
+	for (int i = 1; i <= n; ++i) {
+		for (int j = 1; j <= n; ++j) {
+			for (int z = 1; z <= n; z++) {
 				c[i][j] += a[i][z] * b[z][j];
+			}
+		}
+	}
+	Cout(c);
+}
+
+void Vinigrad_mult(vector<vector<int>> a, vector<vector<int>> b) {
+	vector<vector<int>> c;
+	c.resize(n);
+	for (int i = 1; i <= n; i++) {
+		c[i].resize(n+1);
+	}
+	int k = n / 2;
+	vector<int> F1;
+	for (int i = 1; i <= n; i++) {
+		F1[i] = a[i][1] * a[i][2];
+		for (int j = 2; j <= k; j++) {
+			F1[i] += a[i][2 * j - 1] * a[i][2 * j];
+		}
+	}
+	vector<int> F2;
+	for (int i = 1; i <= n; i++) {
+		F2[i] = b[1][i] * b[2][i];
+		for (int j = 2; j <= k; j++) {
+			F1[i] += b[2 * j - 1][i] * b[2 * j][i];
+		}
+	}
+	for (int i = 1; i <= n; i++) {
+		for (int j = 1; j <= n; j++) {
+			c[i][j] = -F1[i] - F2[j];
+			for (int z = 1; z <= k; z++) {
+				c[i][j] += (a[i][2 * z - 1] + b[2 * z][j]) * (a[i][2 * z] + b[2 * z - 1][j]);
 			}
 		}
 	}
@@ -47,18 +79,19 @@ void mult(vector<vector<int>> a, vector<vector<int>> b) {
 
 int main() {
 	setlocale(LC_ALL, "RUS");
-	cout << "Ââåäèòå ðàçìåðíîñòü ìàòðèö n*n : " << endl;
+	cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ñ€Ð°Ð·Ð¼ÐµÑ€Ð½Ð¾ÑÑ‚ÑŒ Ð¼Ð°Ñ‚Ñ€Ð¸Ñ† n*n : " << endl;
 	cin >> n;
 	vector<vector<int>> a;
 	vector<vector<int>> b;
-	a.resize(n);
-	b.resize(n);
-	for (int i = 0; i < n;i++) {
-		a[i].resize(n);
-		b[i].resize(n);
+	a.resize(n+1);
+	b.resize(n+1);
+	for (int i = 1; i <= n;i++) {
+		a[i].resize(n+1);
+		b[i].resize(n+1);
 	}
 	a = Cin(a);
 	b = Cin(b);
 	mult(a, b);
+	Vinigrad_mult(a, b);
 	return 0;
 }
