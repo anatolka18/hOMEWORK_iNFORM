@@ -74,6 +74,13 @@ void Vinigrad_mult(vector<vector<int>> a, vector<vector<int>> b) {
 			}
 		}
 	}
+	if (n % 2 != 0) {// если n нечёт то добавляю к элементам матрицы с нехватающие
+	        for (int i = 1; i <= n; i++) {
+		         for (int j = 1; j <= n; j++) {
+				c[i][j] += a[i][n] * b[n][j];
+			}
+		}
+        }
 	Cout(c);
 }
 
