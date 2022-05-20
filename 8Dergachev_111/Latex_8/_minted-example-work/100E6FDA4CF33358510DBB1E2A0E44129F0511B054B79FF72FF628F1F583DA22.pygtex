@@ -1,0 +1,6 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{calc}\PYG{o}{.}\PYG{n}{out}\PYG{p}{:} \PYG{n}{calc}\PYG{o}{.}\PYG{n}{l} \PYG{n}{calc}\PYG{o}{.}\PYG{n}{y} \PYG{n}{arena\PYGZus{}ast}\PYG{o}{.}\PYG{n}{h}
+				\PYG{n}{bison} \PYG{o}{\PYGZhy{}}\PYG{n}{d} \PYG{n}{calc}\PYG{o}{.}\PYG{n}{y}
+				\PYG{n}{flex} \PYG{n}{calc}\PYG{o}{.}\PYG{n}{l}
+				\PYG{n}{cc} \PYG{o}{\PYGZhy{}}\PYG{n}{o} \PYG{err}{\PYGZdl{}@} \PYG{n}{calc}\PYG{o}{.}\PYG{n}{tab}\PYG{o}{.}\PYG{n}{c} \PYG{n}{lex}\PYG{o}{.}\PYG{n}{yy}\PYG{o}{.}\PYG{n}{c} \PYG{n}{arena\PYGZus{}ast}\PYG{o}{.}\PYG{n}{c} \PYG{n}{arena}\PYG{o}{.}\PYG{n}{c}
+\end{Verbatim}

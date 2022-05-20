@@ -1,0 +1,14 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n+nb}{int} \PYG{n}{arena\PYGZus{}construct} \PYG{p}{(}\PYG{n}{arena}\PYG{o}{*} \PYG{n}{arena}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+	\PYG{o}{//} \PYG{err}{Начальный} \PYG{err}{размер} \PYG{err}{региона} \PYG{err}{равен} \PYG{err}{некоторой} \PYG{err}{постоянной}\PYG{p}{,} \PYG{err}{равной} \PYG{n}{DEFAULT\PYGZus{}ARENA\PYGZus{}SIZE}
+	\PYG{n}{arena}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{size} \PYG{o}{=} \PYG{n}{DEFAULT\PYGZus{}ARENA\PYGZus{}SIZE}\PYG{p}{;}
+	\PYG{n}{arena}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{allocated} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;}
+	\PYG{o}{//} \PYG{err}{Выделим} \PYG{err}{необходимое} \PYG{err}{число} \PYG{err}{памяти}
+	\PYG{n}{arena}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{arena} \PYG{o}{=} \PYG{n}{malloc}\PYG{p}{(}\PYG{n}{sizeof}\PYG{p}{(}\PYG{n}{node}\PYG{p}{)} \PYG{o}{*} \PYG{n}{DEFAULT\PYGZus{}ARENA\PYGZus{}SIZE}\PYG{p}{);}
+	\PYG{o}{//} \PYG{err}{Если} \PYG{err}{выделение} \PYG{err}{прошло} \PYG{err}{неудачно} \PYG{o}{\PYGZhy{}} \PYG{err}{вернем} \PYG{err}{в} \PYG{err}{качестве} \PYG{err}{кода} \PYG{err}{ошибки} \PYG{err}{отличное} \PYG{err}{от} \PYG{l+m+mi}{0} \PYG{err}{значение}\PYG{o}{.}
+	\PYG{k}{if} \PYG{p}{(}\PYG{n}{arena}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{arena} \PYG{o}{==} \PYG{n}{NULL}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+		\PYG{k}{return} \PYG{p}{(}\PYG{err}{!}\PYG{l+m+mi}{0}\PYG{p}{);}
+	\PYG{p}{\PYGZcb{}}
+	\PYG{k}{return} \PYG{l+m+mi}{0}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

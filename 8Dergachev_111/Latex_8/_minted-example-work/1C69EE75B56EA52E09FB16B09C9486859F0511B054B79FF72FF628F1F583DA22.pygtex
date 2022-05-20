@@ -1,0 +1,10 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{typedef} \PYG{n}{struct} \PYG{n}{arena} \PYG{p}{\PYGZob{}}
+	\PYG{o}{//} \PYG{err}{Указатель} \PYG{err}{на} \PYG{err}{начало} \PYG{err}{региона}
+  \PYG{n}{struct} \PYG{n}{node}\PYG{o}{*} \PYG{n}{arena}\PYG{p}{;}
+  \PYG{o}{//} \PYG{err}{Размер} \PYG{err}{региона}
+  \PYG{n}{unsigned} \PYG{n+nb}{int} \PYG{n}{size}\PYG{p}{;}
+  \PYG{o}{//} \PYG{err}{Объем} \PYG{err}{выделенной} \PYG{err}{регионом} \PYG{err}{памяти}
+  \PYG{n}{unsigned} \PYG{n+nb}{int} \PYG{n}{allocated}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}} \PYG{n}{arena}\PYG{p}{;}
+\end{Verbatim}

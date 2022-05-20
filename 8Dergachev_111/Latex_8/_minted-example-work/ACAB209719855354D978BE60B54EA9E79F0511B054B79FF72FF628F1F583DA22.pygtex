@@ -1,0 +1,23 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n+nb}{int} \PYG{n}{arena\PYGZus{}allocate} \PYG{p}{(}\PYG{n}{arena}\PYG{o}{*} \PYG{n}{arena}\PYG{p}{,} \PYG{n}{unsigned} \PYG{n+nb}{int} \PYG{n}{count}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+	\PYG{o}{//} \PYG{err}{Если} \PYG{err}{места} \PYG{err}{в} \PYG{err}{регионе} \PYG{err}{недостаточно}
+	\PYG{k}{if} \PYG{p}{(}\PYG{n}{arena}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{allocated} \PYG{o}{+} \PYG{n}{count} \PYG{o}{\PYGZgt{}=} \PYG{n}{arena}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{size}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+		\PYG{o}{//} \PYG{err}{Определим} \PYG{err}{новый} \PYG{err}{размер} \PYG{err}{региона}
+		\PYG{n}{unsigned} \PYG{n+nb}{int} \PYG{n}{newSize} \PYG{o}{=} \PYG{n}{MULTIPLY\PYGZus{}FACTOR} \PYG{o}{*} \PYG{n}{arena}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{size}\PYG{p}{;}
+		\PYG{o}{//} \PYG{err}{Выделим} \PYG{err}{регион} \PYG{err}{большего} \PYG{err}{размера} \PYG{err}{и} \PYG{err}{освободим} \PYG{err}{ранее} \PYG{err}{занятую} \PYG{err}{память}
+		\PYG{n}{node}\PYG{o}{*} \PYG{n}{newArena} \PYG{o}{=} \PYG{n}{realloc}\PYG{p}{(}\PYG{n}{arena}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{arena}\PYG{p}{,}
+			\PYG{n}{newSize} \PYG{o}{*} \PYG{n}{sizeof}\PYG{p}{(}\PYG{n}{node}\PYG{p}{));}
+		\PYG{k}{if} \PYG{p}{(}\PYG{n}{NULL} \PYG{o}{==} \PYG{n}{newArena}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+			\PYG{k}{return} \PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{;}
+		\PYG{p}{\PYGZcb{}}
+		\PYG{n}{arena}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{arena} \PYG{o}{=} \PYG{n}{newArena}\PYG{p}{;}
+		\PYG{n}{arena}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{size} \PYG{o}{=} \PYG{n}{newSize}\PYG{p}{;}
+	\PYG{p}{\PYGZcb{}}
+	\PYG{o}{//} \PYG{err}{В} \PYG{err}{качестве} \PYG{err}{результата} \PYG{err}{вернем} \PYG{err}{индекс} \PYG{err}{первого} \PYG{err}{свободного} \PYG{err}{участка} \PYG{err}{региона}
+	\PYG{n}{unsigned} \PYG{n+nb}{int} \PYG{n}{result} \PYG{o}{=} \PYG{n}{arena}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{allocated}\PYG{p}{;}
+	\PYG{o}{//} \PYG{err}{Сместим} \PYG{err}{индекс} \PYG{err}{на} \PYG{err}{объем} \PYG{err}{выделенной} \PYG{err}{памяти}
+	\PYG{n}{arena}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{allocated} \PYG{o}{+=} \PYG{n}{count}\PYG{p}{;}
+	\PYG{o}{//} \PYG{err}{Вернем} \PYG{err}{результат}
+	\PYG{k}{return} \PYG{n}{result}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

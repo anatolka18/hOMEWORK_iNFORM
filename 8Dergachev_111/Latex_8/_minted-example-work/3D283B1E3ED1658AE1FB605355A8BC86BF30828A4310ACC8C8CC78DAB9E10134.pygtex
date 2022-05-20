@@ -1,0 +1,35 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{import} \PYG{n}{subprocess} \PYG{n}{as} \PYG{n}{sb}
+\PYG{n}{import} \PYG{n}{time}
+\PYG{n}{import} \PYG{n}{sys}
+\PYG{n}{def} \PYG{n+nf}{run}\PYG{p}{(}\PYG{n}{args}\PYG{p}{)}\PYG{o}{:}
+    \PYG{k}{return} \PYG{n}{sb}\PYG{p}{.}\PYG{n}{run}\PYG{p}{(}\PYG{n}{args}\PYG{p}{,}
+        \PYG{n}{capture\PYGZus{}output}\PYG{o}{=}\PYG{n}{True}\PYG{p}{,} \PYG{p}{).}\PYG{n}{stdout}\PYG{p}{.}\PYG{n}{decode}\PYG{p}{().}\PYG{n}{strip}\PYG{p}{()}
+
+\PYG{n}{def} \PYG{n}{main}\PYG{p}{()}\PYG{o}{:}
+    \PYG{k}{if} \PYG{p}{(}\PYG{n}{len}\PYG{p}{(}\PYG{n}{sys}\PYG{p}{.}\PYG{n}{argv}\PYG{p}{)} \PYG{o}{\PYGZlt{}} \PYG{l+m+mi}{6}\PYG{p}{)}\PYG{o}{:}
+        \PYG{n}{print}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}Invalid arguments\PYGZdq{}} \PYG{p}{)}
+        \PYG{k}{return}
+    \PYG{n}{exe\PYGZus{}path} \PYG{o}{=} \PYG{n}{sys}\PYG{p}{.}\PYG{n}{argv}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]}
+    \PYG{n}{out\PYGZus{}path} \PYG{o}{=} \PYG{n}{sys}\PYG{p}{.}\PYG{n}{argv}\PYG{p}{[}\PYG{l+m+mi}{2}\PYG{p}{]}
+    \PYG{n}{right\PYGZus{}bound} \PYG{o}{=} \PYG{k+kt}{int}\PYG{p}{(}\PYG{n}{sys}\PYG{p}{.}\PYG{n}{argv}\PYG{p}{[}\PYG{l+m+mi}{3}\PYG{p}{])}
+    \PYG{n}{step} \PYG{o}{=} \PYG{k+kt}{int}\PYG{p}{(}\PYG{n}{sys}\PYG{p}{.}\PYG{n}{argv}\PYG{p}{[}\PYG{l+m+mi}{4}\PYG{p}{])}
+    \PYG{n}{iter} \PYG{o}{=} \PYG{n}{sys}\PYG{p}{.}\PYG{n}{argv}\PYG{p}{[}\PYG{l+m+mi}{5}\PYG{p}{]}
+
+    \PYG{n}{f} \PYG{o}{=} \PYG{n}{open}\PYG{p}{(}\PYG{n}{out\PYGZus{}path}\PYG{p}{,} \PYG{l+s}{\PYGZdq{}w\PYGZdq{}} \PYG{p}{)}
+    \PYG{n}{f}\PYG{p}{.}\PYG{n}{write}\PYG{p}{(}\PYG{n}{f}\PYG{l+s}{\PYGZdq{}}\PYG{p}{\PYGZob{}}\PYG{n}{exe\PYGZus{}path}\PYG{p}{\PYGZcb{}} \PYG{err}{\PYGZbs{}}\PYG{n}{n} \PYG{l+s}{\PYGZdq{} )}
+    \PYG{n}{f}\PYG{p}{.}\PYG{n}{close}\PYG{p}{()}
+    \PYG{k}{for} \PYG{n}{expr\PYGZus{}len} \PYG{n}{in} \PYG{n}{range}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{n}{right\PYGZus{}bound}\PYG{p}{,} \PYG{n}{step}\PYG{p}{)}\PYG{o}{:}
+        \PYG{n}{test\PYGZus{}string} \PYG{o}{=} \PYG{l+s}{\PYGZdq{}+\PYGZdq{}} \PYG{p}{.}\PYG{n}{join}\PYG{p}{([}\PYG{l+s+sc}{\PYGZsq{}2\PYGZsq{}} \PYG{p}{]} \PYG{o}{*} \PYG{n}{expr\PYGZus{}len}\PYG{p}{)}
+        \PYG{n}{args} \PYG{o}{=} \PYG{p}{[}\PYG{n}{exe\PYGZus{}path}\PYG{p}{,} \PYG{n}{test\PYGZus{}string}\PYG{p}{,} \PYG{n}{iter}\PYG{p}{]}
+        \PYG{n}{t} \PYG{o}{=} \PYG{n}{time}\PYG{p}{.}\PYG{n}{monotonic}\PYG{p}{()}
+        \PYG{n}{run}\PYG{p}{(}\PYG{n}{args}\PYG{p}{)}
+        \PYG{n}{end\PYGZus{}t} \PYG{o}{=} \PYG{n}{time}\PYG{p}{.}\PYG{n}{monotonic}\PYG{p}{()}
+        \PYG{n}{f} \PYG{o}{=} \PYG{n}{open}\PYG{p}{(}\PYG{n}{out\PYGZus{}path}\PYG{p}{,} \PYG{l+s}{\PYGZdq{}a\PYGZdq{}} \PYG{p}{)}
+        \PYG{n}{f}\PYG{p}{.}\PYG{n}{write}\PYG{p}{(}\PYG{n}{f}\PYG{l+s}{\PYGZdq{}\PYGZob{}expr\PYGZus{}len\PYGZcb{} \PYGZob{}(end\PYGZus{}t \PYGZhy{} t) / (int(iter))\PYGZcb{} }\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s}{ \PYGZdq{}} \PYG{p}{)}
+        \PYG{n}{f}\PYG{p}{.}\PYG{n}{close}\PYG{p}{()}
+        \PYG{n}{print}\PYG{p}{(}\PYG{n}{f}\PYG{l+s}{\PYGZdq{} Step \PYGZob{}expr\PYGZus{}len\PYGZcb{} finished\PYGZdq{}} \PYG{p}{)}
+
+\PYG{k}{if} \PYG{err}{\PYGZbs{}}\PYG{n}{\PYGZus{}\PYGZus{}name}\PYG{err}{\PYGZbs{}}\PYG{n}{\PYGZus{}\PYGZus{}} \PYG{o}{==} \PYG{l+s}{\PYGZdq{}\PYGZbs{}\PYGZus{}\PYGZus{}main\PYGZbs{}\PYGZus{}\PYGZus{}\PYGZdq{}} \PYG{o}{:}
+    \PYG{n}{main}\PYG{p}{()}
+\end{Verbatim}

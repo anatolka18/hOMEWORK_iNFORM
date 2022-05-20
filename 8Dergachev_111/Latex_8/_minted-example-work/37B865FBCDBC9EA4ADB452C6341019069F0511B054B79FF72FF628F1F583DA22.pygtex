@@ -1,0 +1,7 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{void} \PYG{n}{arena\PYGZus{}free} \PYG{p}{(}\PYG{n}{arena}\PYG{o}{*} \PYG{n}{arena}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+	\PYG{k}{if} \PYG{p}{(}\PYG{n}{arena}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{arena} \PYG{o}{!=} \PYG{n}{NULL}\PYG{p}{)}
+		\PYG{n}{free}\PYG{p}{(}\PYG{n}{arena}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{arena}\PYG{p}{);}
+	\PYG{n}{arena}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{arena} \PYG{o}{=} \PYG{n}{NULL}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}
